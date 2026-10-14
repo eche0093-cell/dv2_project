@@ -49,20 +49,25 @@
       </div>
     </section>
 
-    <!-- Visualization 2: Proportional Symbol Map -->
+    <!-- Visualization 2 & Bump Chart Combined: Regional Distribution & Growth Trajectories -->
     <section class="card">
-      <h2>3. Workforce Regional Distribution (Proportional Symbol Map)</h2>
+      <h2>3. Regional Distribution & Growth Trajectories</h2>
       <p>
-        This map shows the concentration of total healthcare workers across Australian states and territories for 2024. It highlights the stark numerical dominance of populous eastern seaboard states like New South Wales and Victoria compared to smaller territories, establishing the baseline geographical imbalance of the workforce.
+        Analyzing state-level workforce patterns involves examining both spatial concentration and temporal rank performance. While the proportional symbol map highlights the absolute magnitude and geographical imbalance of healthcare workers across Australian states and territories for 2024, the companion bump chart tracks annual growth rate trajectories and rank crossovers from 2018 to 2024. Together, these views reveal how static population centers contrast with dynamic regional growth shifts over time.
       </p>
 
-      <!-- The embedded map container -->
+      <!-- Container for Proportional Symbol Map -->
+      <h3>Absolute Workforce Volume (Proportional Symbol Map)</h3>
       <div id="prop_map" class="vis-container"></div>
+
+      <!-- Container for State Rankings Bump Chart -->
+      <h3>State Workforce Growth Rate Rankings (Bump Chart)</h3>
+      <div id="bump_chart" class="vis-container"></div>
 
       <!-- Munzner Framework Documentation (Paragraph format) -->
       <div class="munzner-box">
         <p>
-          Designed to compare spatial densities and regional workforce concentrations across Australia, this proportional symbol map overlays spatial point locations with quantitative 2024 workforce totals. Geographic latitude and longitude position the symbols accurately across an Australian GeoJSON base map, while circle area size visually encodes practitioner magnitude.
+          These spatial and temporal idioms combine geographic coordinate mapping with rank-based multi-series line visualization. The proportional symbol map overlays spatial point locations with quantitative workforce totals, using geographic latitude/longitude for position and circle area size to encode magnitude. The bump chart evaluates relative structural growth rankings across administrative regions over time, mapping ordinal years horizontally against inverted quantitative rank values using linear point-to-point line segments and direct text labels.
         </p>
       </div>
     </section>
@@ -133,8 +138,12 @@
     vegaEmbed('#streamgraph', 'specs/workforce_growth_stream.json', {actions: false})
       .catch(console.error);
 
-    // Embed Visualization 2 (Proportional Symbol Map)
+    // Embed Visualization 2a (Proportional Symbol Map)
     vegaEmbed('#prop_map', 'specs/workforce_map_proportional.json', {actions: false})
+      .catch(console.error);
+
+    // Embed Visualization 2b (State Rankings Bump Chart)
+    vegaEmbed('#bump_chart', 'specs/state_rankings_bump.json', {actions: false})
       .catch(console.error);
 
     // Embed Visualization 3 (Doctors per 100k Choropleth Map)
