@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Australian Healthcare Workforce Multi-Hex Cartogram",
+    "subtitle": "Each hexagon represents proportional workforce density (2024)",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 5
+  },
+  "width": 550,
+  "height": 450,
+  "padding": 20,
+  "data": {
+    "values": [
+      {"state": "Western Australia", "code": "WA", "row": 3, "column": 1, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 3, "column": 2, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 4, "column": 1, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 4, "column": 2, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 5, "column": 1, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 5, "column": 2, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 6, "column": 1, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 6, "column": 2, "count_2024": 94207},
+      {"state": "Western Australia", "code": "WA", "row": 7, "column": 1, "count_2024": 94207},
+      {"state": "Northern Territory", "code": "NT", "row": 1, "column": 5, "count_2024": 8429},
+      {"state": "South Australia", "code": "SA", "row": 5, "column": 3, "count_2024": 68095},
+      {"state": "South Australia", "code": "SA", "row": 5, "column": 4, "count_2024": 68095},
+      {"state": "South Australia", "code": "SA", "row": 6, "column": 3, "count_2024": 68095},
+      {"state": "South Australia", "code": "SA", "row": 6, "column": 4, "count_2024": 68095},
+      {"state": "South Australia", "code": "SA", "row": 7, "column": 3, "count_2024": 68095},
+      {"state": "South Australia", "code": "SA", "row": 7, "column": 4, "count_2024": 68095},
+      {"state": "South Australia", "code": "SA", "row": 8, "column": 3, "count_2024": 68095},
+      {"state": "Queensland", "code": "QLD", "row": 2, "column": 6, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 2, "column": 7, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 3, "column": 6, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 3, "column": 7, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 3, "column": 8, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 4, "column": 6, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 4, "column": 7, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 4, "column": 8, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 5, "column": 6, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 5, "column": 7, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 6, "column": 6, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 6, "column": 7, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 7, "column": 6, "count_2024": 186187},
+      {"state": "Queensland", "code": "QLD", "row": 7, "column": 7, "count_2024": 186187},
+      {"state": "New South Wales", "code": "NSW", "row": 4, "column": 4, "count_2024": 249154},
+      {"state": "New South Wales", "code": "NSW", "row": 4, "column": 5, "count_2024": 249154},
+      {"state": "New South Wales", "code": "NSW", "row": 5, "column": 5, "count_2024": 249154},
+      {"state": "New South Wales", "code": "NSW", "row": 6, "column": 5, "count_2024": 249154},
+      {"state": "New South Wales", "code": "NSW", "row": 7, "column": 5, "count_2024": 249154},
+      {"state": "New South Wales", "code": "NSW", "row": 8, "column": 4, "count_2024": 249154},
+      {"state": "New South Wales", "code": "NSW", "row": 8, "column": 5, "count_2024": 249154},
+      {"state": "Victoria", "code": "VIC", "row": 6, "column": 4, "count_2024": 238169},
+      {"state": "Victoria", "code": "VIC", "row": 7, "column": 4, "count_2024": 238169},
+      {"state": "Victoria", "code": "VIC", "row": 8, "column": 6, "count_2024": 238169},
+      {"state": "Tasmania", "code": "TAS", "row": 9, "column": 5, "count_2024": 20076},
+      {"state": "Tasmania", "code": "TAS", "row": 9, "column": 6, "count_2024": 20076},
+      {"state": "Australian Capital Territory", "code": "ACT", "row": 7, "column": 6, "count_2024": 16271}
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "datum.row % 2 == 1 ? datum.column + 0.5 : datum.column",
+      "as": "hex_col"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "shape": "M0,-7 L6.06,-3.5 L6.06,3.5 L0,7 L-6.06,3.5 L-6.06,-3.5 Z",
+        "filled": true,
+        "stroke": "#ffffff",
+        "strokeWidth": 1,
+        "size": 85
+      },
+      "encoding": {
+        "x": {
+          "field": "hex_col",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {"domain": [0, 9.5]}
+        },
+        "y": {
+          "field": "row",
+          "type": "quantitative",
+          "axis": null,
+          "sort": "descending",
+          "scale": {"domain": [0, 10.5]}
+        },
+        "fill": {
+          "field": "count_2024",
+          "type": "quantitative",
+          "title": "Healthcare Workers",
+          "scale": {"scheme": "blues"}
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State/Territory"},
+          {"field": "count_2024", "type": "quantitative", "title": "Total Workforce", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {"op": "mean", "field": "hex_col", "as": "center_x"},
+            {"op": "mean", "field": "row", "as": "center_y"}
+          ],
+          "groupby": ["code"]
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontWeight": "bold",
+        "fontSize": 11,
+        "fill": "#ffffff",
+        "stroke": "#1b365d",
+        "strokeWidth": 0.3
+      },
+      "encoding": {
+        "x": {"field": "center_x", "type": "quantitative"},
+        "y": {"field": "center_y", "type": "quantitative", "sort": "descending"},
+        "text": {"field": "code", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "background": "#ffffff"
+  }
+}
