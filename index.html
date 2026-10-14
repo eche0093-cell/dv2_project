@@ -16,7 +16,7 @@
 <body>
 
   <header>
-<div>
+    <div>
       <h1>Australian Healthcare Workforce Analysis</h1>
       <p>Examining Workforce Growth, Distribution, and Sector Trends (2015–2024)</p>
     </div>
@@ -46,7 +46,26 @@
         <h3>Tamara Munzner Framework Analysis</h3>
         <p><strong>What (Data):</strong> Multi-year quantitative records capturing annual practitioner counts categorized by specific healthcare professions (e.g., Nurses and Midwives, Medical Practitioners, Psychologists).</p>
         <p><strong>Why (Task):</strong> To analyze trends over time, compare relative growth speeds across different health sectors, and identify shifts in workforce dominance.</p>
-        <p><strong>How (Encoding & Idiom):</strong> An advanced <em>Streamgraph</em> idiom using stacked area marks with <code>monotone</code> interpolation for smooth curves. Quantitative years mapped to the X-axis, aggregated practitioner counts mapped to Y (centered stack layout), and nominal professions mapped to distinct categorical color channels.</p>
+        <p><strong>How (Encoding &amp; Idiom):</strong> An advanced <em>Streamgraph</em> idiom using stacked area marks with <code>monotone</code> interpolation for smooth curves. Quantitative years mapped to the X-axis, aggregated practitioner counts mapped to Y (centered stack layout), and nominal professions mapped to distinct categorical color channels.</p>
+      </div>
+    </section>
+
+    <!-- Visualization 2: Proportional Symbol Map -->
+    <section class="card">
+      <h2>3. Workforce Regional Distribution (Proportional Symbol Map)</h2>
+      <p>
+        This map shows the concentration of total healthcare workers across Australian states and territories for 2024.
+      </p>
+
+      <!-- The embedded map container -->
+      <div id="prop_map" class="vis-container"></div>
+
+      <!-- Munzner Framework Documentation (What / Why / How) -->
+      <div class="munzner-box">
+        <h3>Tamara Munzner Framework Analysis</h3>
+        <p><strong>What (Data):</strong> Spatial point locations (latitude/longitude coordinates for state centers) joined with quantitative 2024 healthcare workforce totals.</p>
+        <p><strong>Why (Task):</strong> To compare spatial densities and regional concentration of healthcare professionals across Australia.</p>
+        <p><strong>How (Encoding &amp; Idiom):</strong> Proportional Symbol Map idiom layered over an Australian GeoJSON base map. Spatial position is encoded using latitude and longitude channels, and workforce magnitude is mapped to circle area size.</p>
       </div>
     </section>
   </main>
@@ -56,9 +75,14 @@
     <p>Data Source: National Health Workforce Dataset (AHPRA / Department of Health)</p>
   </footer>
 
-  <!-- Script to embed the Vega-Lite JSON specification -->
+  <!-- Script to embed the Vega-Lite JSON specifications -->
   <script>
+    // Embed Visualization 1 (Streamgraph)
     vegaEmbed('#streamgraph', 'specs/workforce_growth_stream.json', {actions: false})
+      .catch(console.error);
+
+    // Embed Visualization 2 (Proportional Symbol Map)
+    vegaEmbed('#prop_map', 'specs/workforce_map_proportional.json', {actions: false})
       .catch(console.error);
   </script>
 
