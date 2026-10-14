@@ -41,12 +41,11 @@
       <!-- The embedded chart container -->
       <div id="streamgraph" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation (What / Why / How) -->
+      <!-- Munzner Framework Documentation (Paragraph format) -->
       <div class="munzner-box">
-        <h3>Tamara Munzner Framework Analysis</h3>
-        <p><strong>What (Data):</strong> Multi-year quantitative records capturing annual practitioner counts categorized by specific healthcare professions (e.g., Nurses and Midwives, Medical Practitioners, Psychologists).</p>
-        <p><strong>Why (Task):</strong> To analyze trends over time, compare relative growth speeds across different health sectors, and identify shifts in workforce dominance.</p>
-        <p><strong>How (Encoding &amp; Idiom):</strong> An advanced <em>Streamgraph</em> idiom using stacked area marks with <code>monotone</code> interpolation for smooth curves. Quantitative years mapped to the X-axis, aggregated practitioner counts mapped to Y (centered stack layout), and nominal professions mapped to distinct categorical color channels.</p>
+        <p>
+          This visualization analyzes multi-year quantitative records of annual practitioner counts categorized by healthcare professions to evaluate long-term sector growth and structural dominance shifts. Using a streamgraph idiom with stacked area marks and monotone interpolation, quantitative years are mapped to the horizontal axis, centered practitioner volumes are mapped vertically, and distinct nominal professions are distinguished through categorical color channels.
+        </p>
       </div>
     </section>
 
@@ -60,18 +59,35 @@
       <!-- The embedded map container -->
       <div id="prop_map" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation (What / Why / How) -->
+      <!-- Munzner Framework Documentation (Paragraph format) -->
       <div class="munzner-box">
-        <h3>Tamara Munzner Framework Analysis</h3>
-        <p><strong>What (Data):</strong> Spatial point locations (latitude/longitude coordinates for state centers) joined with quantitative 2024 healthcare workforce totals.</p>
-        <p><strong>Why (Task):</strong> To compare spatial densities and regional concentration of healthcare professionals across Australia.</p>
-        <p><strong>How (Encoding &amp; Idiom):</strong> Proportional Symbol Map idiom layered over an Australian GeoJSON base map. Spatial position is encoded using latitude and longitude channels, and workforce magnitude is mapped to circle area size.</p>
+        <p>
+          Designed to compare spatial densities and regional workforce concentrations across Australia, this proportional symbol map overlays spatial point locations with quantitative 2024 workforce totals. Geographic latitude and longitude position the symbols accurately across an Australian GeoJSON base map, while circle area size visually encodes practitioner magnitude.
+        </p>
       </div>
     </section>
 
-    <!-- Visualization 3: Multi-Hex Cartogram -->
+    <!-- Visualization 3: Doctors per 100k Choropleth Map -->
     <section class="card">
-      <h2>4. Equal-Weight Regional Distribution (Multi-Hex Cartogram)</h2>
+      <h2>4. Healthcare Practitioner Density per 100,000 Population (2021)</h2>
+      <p>
+        Normalizing raw practitioner headcounts against ABS 2021 Census state populations reveals the true density of healthcare coverage across Australian states and territories.
+      </p>
+
+      <!-- The embedded map container -->
+      <div id="doctors_per_100k_map" class="vis-container"></div>
+
+      <!-- Munzner Framework Documentation (Paragraph format) -->
+      <div class="munzner-box">
+        <p>
+          To evaluate healthcare supply relative to regional population size across Australian administrative boundaries, this choropleth map integrates state polygon geometries with derived quantitative practitioner rates per 100,000 residents. Visual encoding relies on a sequential blue color saturation scale mapped directly to normalized rate values to highlight regional coverage disparities.
+        </p>
+      </div>
+    </section>
+
+    <!-- Visualization 4: Multi-Hex Cartogram -->
+    <section class="card">
+      <h2>5. Equal-Weight Regional Distribution (Multi-Hex Cartogram)</h2>
       <p>
         Geographic maps can distort data because larger states dominate physical space while smaller territories are difficult to compare. This multi-hex cartogram scales regional area proportionally to healthcare workforce volume, allowing an unbiased visual comparison.
       </p>
@@ -79,12 +95,11 @@
       <!-- The embedded cartogram container -->
       <div id="tile_grid" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation (What / Why / How) -->
+      <!-- Munzner Framework Documentation (Paragraph format) -->
       <div class="munzner-box">
-        <h3>Tamara Munzner Framework Analysis</h3>
-        <p><strong>What (Data):</strong> Abstract spatial multi-hex grid coordinates mapping states and territories to proportional cluster sizes, combined with quantitative 2024 healthcare workforce totals.</p>
-        <p><strong>Why (Task):</strong> To compare practitioner counts across all administrative regions relative to workforce magnitude without perceptual size bias caused by geographic land area.</p>
-        <p><strong>How (Encoding &amp; Idiom):</strong> Multi-Hex Cartogram idiom using proportional point marks for hexagonal blocks and aggregated text labels for state codes. Quantitative totals map to sequential blue color saturation.</p>
+        <p>
+          This multi-hex cartogram compares practitioner counts across all administrative regions relative to workforce magnitude without perceptual size bias caused by geographic land area. Abstract multi-hex grid coordinates map regions to proportional cluster sizes combined with quantitative totals, utilizing proportional point marks and sequential blue color saturation.
+        </p>
       </div>
     </section>
   </main>
@@ -104,7 +119,11 @@
     vegaEmbed('#prop_map', 'specs/workforce_map_proportional.json', {actions: false})
       .catch(console.error);
 
-    // Embed Visualization 3 (Multi-Hex Cartogram)
+    // Embed Visualization 3 (Doctors per 100k Choropleth Map)
+    vegaEmbed('#doctors_per_100k_map', 'specs/doctors_per_100k_map.json', {actions: false})
+      .catch(console.error);
+
+    // Embed Visualization 4 (Multi-Hex Cartogram)
     vegaEmbed('#tile_grid', 'specs/workforce_tile_grid.json', {actions: false})
       .catch(console.error);
   </script>
