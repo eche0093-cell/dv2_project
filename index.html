@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Australian Healthcare Workforce Analysis | DV2</title>
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 
+  <!-- Vega, Vega-Lite, and Vega-Embed CDN Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+  <header>
+<div>
+      <h1>Australian Healthcare Workforce Analysis</h1>
+      <p>Examining Workforce Growth, Distribution, and Sector Trends (2015–2024)</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Introduction Section -->
+    <section class="card">
+      <h2>1. Introduction & The Big Picture</h2>
+      <p>
+        Australia faces ongoing challenges in maintaining a balanced healthcare workforce to keep pace with population growth and regional demands. This visualization project explores how individual health professions have evolved, scaled, and shifted relative to one another over a decade.
+      </p>
+    </section>
+
+    <!-- Visualization 1: Streamgraph -->
+    <section class="card">
+      <h2>2. Growth by Profession (Streamgraph)</h2>
+      <p>
+        The streamgraph below illustrates the macro-level expansion and structural shifts across various Australian healthcare professions from 2015 to 2024. Symmetrical centering allows for clear observation of relative volume changes over time.
+      </p>
+
+      <!-- The embedded chart container -->
+      <div id="streamgraph" class="vis-container"></div>
+
+      <!-- Munzner Framework Documentation (What / Why / How) -->
+      <div class="munzner-box">
+        <h3>Tamara Munzner Framework Analysis</h3>
+        <p><strong>What (Data):</strong> Multi-year quantitative records capturing annual practitioner counts categorized by specific healthcare professions (e.g., Nurses and Midwives, Medical Practitioners, Psychologists).</p>
+        <p><strong>Why (Task):</strong> To analyze trends over time, compare relative growth speeds across different health sectors, and identify shifts in workforce dominance.</p>
+        <p><strong>How (Encoding & Idiom):</strong> An advanced <em>Streamgraph</em> idiom using stacked area marks with <code>monotone</code> interpolation for smooth curves. Quantitative years mapped to the X-axis, aggregated practitioner counts mapped to Y (centered stack layout), and nominal professions mapped to distinct categorical color channels.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Author: Edward | Monash University | Data Visualization 2 (DV2)</p>
+    <p>Data Source: National Health Workforce Dataset (AHPRA / Department of Health)</p>
+  </footer>
+
+  <!-- Script to embed the Vega-Lite JSON specification -->
+  <script>
+    vegaEmbed('#streamgraph', 'specs/workforce_growth_stream.json', {actions: false})
+      .catch(console.error);
+  </script>
+
+</body>
+</html>
