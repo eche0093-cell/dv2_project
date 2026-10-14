@@ -1,1 +1,43 @@
-
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Streamgraph showing healthcare workforce growth by profession over time.",
+  "width": 750,
+  "height": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/dv2_project/main/data/workforce_growth.csv"
+  },
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone"
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "axis": {
+        "format": "d",
+        "title": "Year",
+        "tickMinStep": 1
+      }
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "count",
+      "type": "quantitative",
+      "stack": "center",
+      "axis": null,
+      "title": null
+    },
+    "color": {
+      "field": "profession",
+      "type": "nominal",
+      "scale": {"scheme": "category20"},
+      "legend": {"title": "Healthcare Profession"}
+    },
+    "tooltip": [
+      {"field": "profession", "type": "nominal", "title": "Profession"},
+      {"field": "year", "type": "quantitative", "title": "Year"},
+      {"field": "count", "type": "quantitative", "title": "Practitioners", "format": ","}
+    ]
+  }
+}
