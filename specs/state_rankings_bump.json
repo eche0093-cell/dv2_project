@@ -1,0 +1,166 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "State Workforce Growth Rate Rankings (2018–2024)",
+    "subtitle": "Annual growth rate rank crossovers across major Australian states",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 5
+  },
+  "width": 620,
+  "height": 380,
+  "padding": {"top": 10, "left": 10, "bottom": 10, "right": 140},
+  "data": {
+    "values": [
+      {"year": "2018", "state": "Victoria", "count": 172100, "rank": 1},
+      {"year": "2018", "state": "Queensland", "count": 122400, "rank": 2},
+      {"year": "2018", "state": "New South Wales", "count": 182100, "rank": 3},
+      {"year": "2018", "state": "Western Australia", "count": 61100, "rank": 4},
+      {"year": "2018", "state": "South Australia", "count": 47200, "rank": 5},
+      {"year": "2018", "state": "Tasmania", "count": 15800, "rank": 6},
+
+      {"year": "2019", "state": "Queensland", "count": 128900, "rank": 1},
+      {"year": "2019", "state": "Victoria", "count": 178400, "rank": 2},
+      {"year": "2019", "state": "Western Australia", "count": 64800, "rank": 3},
+      {"year": "2019", "state": "New South Wales", "count": 188200, "rank": 4},
+      {"year": "2019", "state": "Tasmania", "count": 16900, "rank": 5},
+      {"year": "2019", "state": "South Australia", "count": 49300, "rank": 6},
+
+      {"year": "2020", "state": "Queensland", "count": 138900, "rank": 1},
+      {"year": "2020", "state": "Western Australia", "count": 69800, "rank": 2},
+      {"year": "2020", "state": "Victoria", "count": 181400, "rank": 3},
+      {"year": "2020", "state": "Tasmania", "count": 18200, "rank": 4},
+      {"year": "2020", "state": "New South Wales", "count": 195200, "rank": 5},
+      {"year": "2020", "state": "South Australia", "count": 52300, "rank": 6},
+
+      {"year": "2021", "state": "Western Australia", "count": 73200, "rank": 1},
+      {"year": "2021", "state": "Queensland", "count": 145100, "rank": 2},
+      {"year": "2021", "state": "Tasmania", "count": 19100, "rank": 3},
+      {"year": "2021", "state": "Victoria", "count": 188900, "rank": 4},
+      {"year": "2021", "state": "South Australia", "count": 54800, "rank": 5},
+      {"year": "2021", "state": "New South Wales", "count": 201400, "rank": 6},
+
+      {"year": "2022", "state": "Queensland", "count": 151200, "rank": 1},
+      {"year": "2022", "state": "Victoria", "count": 196800, "rank": 2},
+      {"year": "2022", "state": "Western Australia", "count": 75900, "rank": 3},
+      {"year": "2022", "state": "New South Wales", "count": 209100, "rank": 4},
+      {"year": "2022", "state": "Tasmania", "count": 19900, "rank": 5},
+      {"year": "2022", "state": "South Australia", "count": 57100, "rank": 6},
+
+      {"year": "2023", "state": "Victoria", "count": 202400, "rank": 1},
+      {"year": "2023", "state": "Queensland", "count": 156200, "rank": 2},
+      {"year": "2023", "state": "New South Wales", "count": 216800, "rank": 3},
+      {"year": "2023", "state": "Western Australia", "count": 77800, "rank": 4},
+      {"year": "2023", "state": "South Australia", "count": 58900, "rank": 5},
+      {"year": "2023", "state": "Tasmania", "count": 20800, "rank": 6},
+
+      {"year": "2024", "state": "Victoria", "count": 208352, "rank": 1},
+      {"year": "2024", "state": "Queensland", "count": 160735, "rank": 2},
+      {"year": "2024", "state": "Western Australia", "count": 79858, "rank": 3},
+      {"year": "2024", "state": "New South Wales", "count": 224228, "rank": 4},
+      {"year": "2024", "state": "Tasmania", "count": 21445, "rank": 5},
+      {"year": "2024", "state": "South Australia", "count": 60601, "rank": 6}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3.5,
+        "interpolate": "linear"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {"labelAngle": 0}
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "title": "Growth Rate Rank (1 = Highest Growth)",
+          "scale": {
+            "domain": [1, 6],
+            "sort": "descending"
+          },
+          "axis": {
+            "tickMinStep": 1
+          }
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": ["New South Wales", "Victoria", "Queensland", "Western Australia", "South Australia", "Tasmania"],
+            "range": ["#2563eb", "#dc2626", "#059669", "#d97706", "#7c3aed", "#0891b2"]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 80
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "year", "type": "ordinal", "title": "Year"},
+          {"field": "rank", "type": "quantitative", "title": "Growth Rank"},
+          {"field": "count", "type": "quantitative", "title": "Total Practitioners", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.year == '2024'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "state",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "background": "#ffffff"
+  }
+}
