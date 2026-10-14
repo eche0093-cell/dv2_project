@@ -33,7 +33,7 @@
 
     <!-- Visualization 1: Streamgraph -->
     <section class="card">
-      <h2>2. Growth by Profession (Streamgraph)</h2>
+      <h2>2. Growth by Profession</h2>
       <p>
         The streamgraph below illustrates the macro-level expansion and structural shifts across various Australian healthcare professions from 2015 to 2024. Symmetrical centering allows for clear observation of relative volume changes over time, revealing which disciplines have experienced rapid scaling versus those that have maintained stable growth curves.
       </p>
@@ -49,19 +49,37 @@
       </div>
     </section>
 
+    <!-- Visualization: Workforce Age Profile Stacked Bar Chart -->
+    <section class="card">
+      <h2>3. Workforce Age Profile by Gender</h2>
+      <p>
+        This stacked bar chart illustrates the age distribution of healthcare professionals, highlighting the heavy concentration in younger brackets (20–44) and the predominant female representation across all cohorts.
+      </p>
+
+      <!-- The embedded chart container -->
+      <div id="age_stacked_bar" class="vis-container"></div>
+
+      <!-- Munzner Framework Documentation -->
+      <div class="munzner-box">
+        <p>
+          This visualization compares demographic proportions across age brackets and gender classifications to evaluate workforce aging and gender distribution. Utilizing a Stacked Bar Chart idiom, nominal age groups map horizontally while quantitative practitioner counts stack vertically, with gender sub-components distinguished via categorical color channels.
+        </p>
+      </div>
+    </section>
+
     <!-- Visualization 2 & Bump Chart Combined: Regional Distribution & Growth Trajectories -->
     <section class="card">
-      <h2>3. Regional Distribution & Growth Trajectories</h2>
+      <h2>4. Regional Distribution & Growth Trajectories</h2>
       <p>
         Analyzing state-level workforce patterns involves examining both spatial concentration and temporal rank performance. While the proportional symbol map highlights the absolute magnitude and geographical imbalance of healthcare workers across Australian states and territories for 2024, the companion bump chart tracks annual growth rate trajectories and rank crossovers from 2018 to 2024. Together, these views reveal how static population centers contrast with dynamic regional growth shifts over time.
       </p>
 
       <!-- Container for Proportional Symbol Map -->
-      <h3>Absolute Workforce Volume (Proportional Symbol Map)</h3>
+      <h3>Absolute Workforce Volume</h3>
       <div id="prop_map" class="vis-container"></div>
 
       <!-- Container for State Rankings Bump Chart -->
-      <h3>State Workforce Growth Rate Rankings (Bump Chart)</h3>
+      <h3>State Workforce Growth Rate Rankings</h3>
       <div id="bump_chart" class="vis-container"></div>
 
       <!-- Munzner Framework Documentation (Paragraph format) -->
@@ -74,7 +92,7 @@
 
     <!-- Visualization 3: Doctors per 100k Choropleth Map -->
     <section class="card">
-      <h2>4. Healthcare Practitioner Density per 100,000 Population (2021)</h2>
+      <h2>5. Healthcare Practitioner Density per 100,000 Population (2021)</h2>
       <p>
         Normalizing raw practitioner headcounts against ABS 2021 Census state populations reveals the true density of healthcare coverage across Australian states and territories. This normalization shifts our perspective from sheer headcounts to per-capita availability, exposing how smaller jurisdictions manage relative service ratios.
       </p>
@@ -92,7 +110,7 @@
 
     <!-- Visualization 4: Multi-Hex Cartogram -->
     <section class="card">
-      <h2>5. Equal-Weight Regional Distribution (Multi-Hex Cartogram)</h2>
+      <h2>6. Equal-Weight Regional Distribution</h2>
       <p>
         Geographic maps can distort data because larger states dominate physical space while smaller territories are difficult to compare. This multi-hex cartogram scales regional area proportionally to healthcare workforce volume, allowing an unbiased visual comparison across all jurisdictions without geographic size bias.
       </p>
@@ -110,7 +128,7 @@
 
     <!-- Visualization 5: Profession x Remoteness Heatmap -->
     <section class="card">
-      <h2>6. Healthcare Work Metrics by Profession & Remoteness Area (2023)</h2>
+      <h2>7. Healthcare Work Metrics by Profession & Remoteness Area (2023)</h2>
       <p>
         Drilling deeper into community access, this heatmap cross-examines key workforce metrics across 15 healthcare disciplines and 5 remoteness categories. It uncovers critical systemic insights—such as the sharp escalation of service metrics for paramedicine and medical practitioners in remote and very remote settings—reflecting the unique operational demands and rural healthcare delivery challenges across Australia.
       </p>
@@ -136,6 +154,10 @@
   <script>
     // Embed Visualization 1 (Streamgraph)
     vegaEmbed('#streamgraph', 'specs/workforce_growth_stream.json', {actions: false})
+      .catch(console.error);
+
+    // Embed Visualization: Workforce Age Profile Stacked Bar
+    vegaEmbed('#age_stacked_bar', 'specs/workforce_age_stacked_bar.json', {actions: false})
       .catch(console.error);
 
     // Embed Visualization 2a (Proportional Symbol Map)
