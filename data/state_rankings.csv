@@ -1,25 +1,43 @@
 year,state,count,rank
-2015,New South Wales,162100,1
-2015,Victoria,148200,2
-2015,Queensland,112400,3
-2015,Western Australia,58100,4
-2015,South Australia,44200,5
-2015,Tasmania,14800,6
-2015,Australian Capital Territory,10200,7
-2015,Northern Territory,6100,8
-2020,New South Wales,195200,1
-2020,Victoria,181400,2
-2020,Queensland,138900,3
-2020,Western Australia,69800,4
-2020,South Australia,52300,5
-2020,Tasmania,18200,6
-2020,Australian Capital Territory,12500,7
-2020,Northern Territory,7400,8
-2024,New South Wales,224228,1
-2024,Victoria,208352,2
-2024,Queensland,160735,3
-2024,Western Australia,79858,4
-2024,South Australia,60601,5
-2024,Tasmania,21445,6
-2024,Australian Capital Territory,14464,7
-2024,Northern Territory,8515,8
+2018,Victoria,172100,1
+2018,Queensland,122400,2
+2018,New South Wales,182100,3
+2018,Western Australia,61100,4
+2018,South Australia,47200,5
+2018,Tasmania,15800,6
+2019,Queensland,128900,1
+2019,Victoria,178400,2
+2019,Western Australia,64800,3
+2019,New South Wales,188200,4
+2019,Tasmania,16900,5
+2019,South Australia,49300,6
+2020,Queensland,138900,1
+2020,Western Australia,69800,2
+2020,Victoria,181400,3
+2020,Tasmania,18200,4
+2020,New South Wales,195200,5
+2020,South Australia,52300,6
+2021,Western Australia,73200,1
+2021,Queensland,145100,2
+2021,Tasmania,19100,3
+2021,Victoria,188900,4
+2021,South Australia,54800,5
+2021,New South Wales,201400,6
+2022,Queensland,151200,1
+2022,Victoria,196800,2
+2022,Western Australia,75900,3
+2022,New South Wales,209100,4
+2022,Tasmania,19900,5
+2022,South Australia,57100,6
+2023,Victoria,202400,1
+2023,Queensland,156200,2
+2023,New South Wales,216800,3
+2023,Western Australia,77800,4
+2023,South Australia,58900,5
+2023,Tasmania,20800,6
+2024,Victoria,208352,1
+2024,Queensland,160735,2
+2024,Western Australia,79858,3
+2024,New South Wales,224228,4
+2024,Tasmania,21445,5
+2024,South Australia,60601,6
