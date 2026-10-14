@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Healthcare Practitioners per 100,000 Population by State (2021)",
+    "subtitle": "Normalized practitioner density using ABS 2021 Census state populations",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 5
+  },
+  "width": 700,
+  "height": 500,
+  "padding": 10,
+  "projection": {
+    "type": "identity",
+    "reflectY": true
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/eche0093-cell/dv2_project/main/data/doctors_per_100k_state.csv"
+            },
+            "key": "state",
+            "fields": ["practitioners", "population", "rate_per_100k"]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "color": {
+          "field": "rate_per_100k",
+          "type": "quantitative",
+          "title": "Rate per 100k",
+          "scale": {
+            "scheme": "blues",
+            "domain": [2500, 3800]
+          }
+        },
+        "tooltip": [
+          {"field": "properties.STATE_NAME", "type": "nominal", "title": "State/Territory"},
+          {"field": "rate_per_100k", "type": "quantitative", "title": "Practitioners per 100k", "format": ",.1f"},
+          {"field": "practitioners", "type": "quantitative", "title": "Total Practitioners", "format": ","},
+          {"field": "population", "type": "quantitative", "title": "Population (2021)", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "background": "#ffffff"
+  }
+}
