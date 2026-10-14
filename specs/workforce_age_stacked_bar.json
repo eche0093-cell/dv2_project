@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Workforce Age Profile by Gender (Stacked Bar Chart)",
+    "subtitle": "Distribution of healthcare practitioners across age brackets and gender",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 5
+  },
+  "width": 650,
+  "height": 380,
+  "padding": 10,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/dv2_project/main/data/workforce_age_profile.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 3,
+    "cornerRadiusTopRight": 3
+  },
+  "encoding": {
+    "x": {
+      "field": "age_group",
+      "type": "nominal",
+      "title": "Age Group",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Total Practitioners",
+      "stack": "zero"
+    },
+    "color": {
+      "field": "sex",
+      "type": "nominal",
+      "title": "Gender",
+      "scale": {
+        "domain": ["Female", "Male"],
+        "range": ["#db2777", "#2563eb"]
+      }
+    },
+    "tooltip": [
+      {"field": "age_group", "type": "nominal", "title": "Age Group"},
+      {"field": "sex", "type": "nominal", "title": "Gender"},
+      {"field": "count", "type": "quantitative", "title": "Practitioner Count", "format": ","}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "background": "#ffffff"
+  }
+}
