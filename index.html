@@ -68,6 +68,25 @@
         <p><strong>How (Encoding &amp; Idiom):</strong> Proportional Symbol Map idiom layered over an Australian GeoJSON base map. Spatial position is encoded using latitude and longitude channels, and workforce magnitude is mapped to circle area size.</p>
       </div>
     </section>
+
+    <!-- Visualization 3: Multi-Hex Cartogram -->
+    <section class="card">
+      <h2>4. Equal-Weight Regional Distribution (Multi-Hex Cartogram)</h2>
+      <p>
+        Geographic maps can distort data because larger states dominate physical space while smaller territories are difficult to compare. This multi-hex cartogram scales regional area proportionally to healthcare workforce volume, allowing an unbiased visual comparison.
+      </p>
+
+      <!-- The embedded cartogram container -->
+      <div id="tile_grid" class="vis-container"></div>
+
+      <!-- Munzner Framework Documentation (What / Why / How) -->
+      <div class="munzner-box">
+        <h3>Tamara Munzner Framework Analysis</h3>
+        <p><strong>What (Data):</strong> Abstract spatial multi-hex grid coordinates mapping states and territories to proportional cluster sizes, combined with quantitative 2024 healthcare workforce totals.</p>
+        <p><strong>Why (Task):</strong> To compare practitioner counts across all administrative regions relative to workforce magnitude without perceptual size bias caused by geographic land area.</p>
+        <p><strong>How (Encoding &amp; Idiom):</strong> Multi-Hex Cartogram idiom using proportional point marks for hexagonal blocks and aggregated text labels for state codes. Quantitative totals map to sequential blue color saturation.</p>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -83,6 +102,10 @@
 
     // Embed Visualization 2 (Proportional Symbol Map)
     vegaEmbed('#prop_map', 'specs/workforce_map_proportional.json', {actions: false})
+      .catch(console.error);
+
+    // Embed Visualization 3 (Multi-Hex Cartogram)
+    vegaEmbed('#tile_grid', 'specs/workforce_tile_grid.json', {actions: false})
       .catch(console.error);
   </script>
 
