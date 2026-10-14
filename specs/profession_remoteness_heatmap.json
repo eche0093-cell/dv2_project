@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Healthcare Work Metrics by Profession & Remoteness Area (2023)",
+    "subtitle": "Comparison of workforce metrics across healthcare disciplines from Major Cities to Very Remote areas",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 5
+  },
+  "width": 750,
+  "height": 280,
+  "padding": 10,
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/dv2_project/main/data/remoteness_profession_heatmap.csv"
+  },
+  "layer": [
+    {
+      "mark": "rect",
+      "encoding": {
+        "x": {
+          "field": "profession",
+          "type": "nominal",
+          "title": "Healthcare Profession",
+          "axis": {
+            "labelAngle": -45,
+            "labelLimit": 180,
+            "titlePadding": 10
+          }
+        },
+        "y": {
+          "field": "remoteness",
+          "type": "nominal",
+          "title": "Remoteness Area (2023)",
+          "sort": ["Major Cities", "Inner Regional", "Outer Regional", "Remote", "Very Remote"]
+        },
+        "color": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Metric Value",
+          "scale": {
+            "scheme": "reds",
+            "domain": [18, 56]
+          }
+        },
+        "tooltip": [
+          {"field": "remoteness", "type": "nominal", "title": "Remoteness Area"},
+          {"field": "profession", "type": "nominal", "title": "Profession"},
+          {"field": "value", "type": "quantitative", "title": "Value", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "middle",
+        "fontSize": 10
+      },
+      "encoding": {
+        "x": {
+          "field": "profession",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "remoteness",
+          "type": "nominal",
+          "sort": ["Major Cities", "Inner Regional", "Outer Regional", "Remote", "Very Remote"]
+        },
+        "text": {
+          "field": "value",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.value > 42",
+            "value": "#ffffff"
+          },
+          "value": "#1e293b"
+        }
+      }
+    }
+  ],
+  "config": {
+    "axis": {
+      "grid": false
+    },
+    "view": {
+      "stroke": null
+    },
+    "background": "#ffffff"
+  }
+}
