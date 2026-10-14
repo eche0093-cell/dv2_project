@@ -27,7 +27,7 @@
     <section class="card">
       <h2>1. Introduction & The Big Picture</h2>
       <p>
-        Australia faces ongoing challenges in maintaining a balanced healthcare workforce to keep pace with population growth and regional demands. This visualization project explores how individual health professions have evolved, scaled, and shifted relative to one another over a decade.
+        Australia faces ongoing challenges in maintaining a balanced healthcare workforce to keep pace with population growth, demographic shifts, and regional demands. Understanding these pressures requires looking beyond national totals to examine how individual health professions have evolved, scaled, and distributed themselves relative to one another over a decade. This visual story explores the structural composition, geographic concentration, and systemic maldistribution of Australia's healthcare professionals.
       </p>
     </section>
 
@@ -35,7 +35,7 @@
     <section class="card">
       <h2>2. Growth by Profession (Streamgraph)</h2>
       <p>
-        The streamgraph below illustrates the macro-level expansion and structural shifts across various Australian healthcare professions from 2015 to 2024. Symmetrical centering allows for clear observation of relative volume changes over time.
+        The streamgraph below illustrates the macro-level expansion and structural shifts across various Australian healthcare professions from 2015 to 2024. Symmetrical centering allows for clear observation of relative volume changes over time, revealing which disciplines have experienced rapid scaling versus those that have maintained stable growth curves.
       </p>
 
       <!-- The embedded chart container -->
@@ -53,7 +53,7 @@
     <section class="card">
       <h2>3. Workforce Regional Distribution (Proportional Symbol Map)</h2>
       <p>
-        This map shows the concentration of total healthcare workers across Australian states and territories for 2024.
+        This map shows the concentration of total healthcare workers across Australian states and territories for 2024. It highlights the stark numerical dominance of populous eastern seaboard states like New South Wales and Victoria compared to smaller territories, establishing the baseline geographical imbalance of the workforce.
       </p>
 
       <!-- The embedded map container -->
@@ -71,7 +71,7 @@
     <section class="card">
       <h2>4. Healthcare Practitioner Density per 100,000 Population (2021)</h2>
       <p>
-        Normalizing raw practitioner headcounts against ABS 2021 Census state populations reveals the true density of healthcare coverage across Australian states and territories.
+        Normalizing raw practitioner headcounts against ABS 2021 Census state populations reveals the true density of healthcare coverage across Australian states and territories. This normalization shifts our perspective from sheer headcounts to per-capita availability, exposing how smaller jurisdictions manage relative service ratios.
       </p>
 
       <!-- The embedded map container -->
@@ -89,7 +89,7 @@
     <section class="card">
       <h2>5. Equal-Weight Regional Distribution (Multi-Hex Cartogram)</h2>
       <p>
-        Geographic maps can distort data because larger states dominate physical space while smaller territories are difficult to compare. This multi-hex cartogram scales regional area proportionally to healthcare workforce volume, allowing an unbiased visual comparison.
+        Geographic maps can distort data because larger states dominate physical space while smaller territories are difficult to compare. This multi-hex cartogram scales regional area proportionally to healthcare workforce volume, allowing an unbiased visual comparison across all jurisdictions without geographic size bias.
       </p>
 
       <!-- The embedded cartogram container -->
@@ -99,6 +99,24 @@
       <div class="munzner-box">
         <p>
           This multi-hex cartogram compares practitioner counts across all administrative regions relative to workforce magnitude without perceptual size bias caused by geographic land area. Abstract multi-hex grid coordinates map regions to proportional cluster sizes combined with quantitative totals, utilizing proportional point marks and sequential blue color saturation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Visualization 5: Profession x Remoteness Heatmap -->
+    <section class="card">
+      <h2>6. Healthcare Work Metrics by Profession & Remoteness Area (2023)</h2>
+      <p>
+        Drilling deeper into community access, this heatmap cross-examines key workforce metrics across 15 healthcare disciplines and 5 remoteness categories. It uncovers critical systemic insights—such as the sharp escalation of service metrics for paramedicine and medical practitioners in remote and very remote settings—reflecting the unique operational demands and rural healthcare delivery challenges across Australia.
+      </p>
+
+      <!-- Embedded chart container -->
+      <div id="profession_heatmap" class="vis-container"></div>
+
+      <!-- Munzner Framework Documentation -->
+      <div class="munzner-box">
+        <p>
+          This visualization cross-examines quantitative workforce metrics across nominal healthcare professions and ordered remoteness classifications to identify practice pattern disparities between urban and rural settings. Utilizing a Heatmap idiom with rect marks and embedded text labels, nominal professions are arranged horizontally and ordered remoteness categories vertically, with quantitative values encoded through sequential red color saturation and contrast text.
         </p>
       </div>
     </section>
@@ -125,6 +143,10 @@
 
     // Embed Visualization 4 (Multi-Hex Cartogram)
     vegaEmbed('#tile_grid', 'specs/workforce_tile_grid.json', {actions: false})
+      .catch(console.error);
+
+    // Embed Visualization 5 (Profession x Remoteness Heatmap)
+    vegaEmbed('#profession_heatmap', 'specs/profession_remoteness_heatmap.json', {actions: false})
       .catch(console.error);
   </script>
 
