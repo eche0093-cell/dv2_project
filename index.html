@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Australian Healthcare Workforce Analysis | DV2</title>
-  
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <title>Who Looks After Australia? | Australian Healthcare Workforce</title>
 
-  <!-- Vega, Vega-Lite, and Vega-Embed CDN Scripts -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/story-additions.css">
+
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -17,168 +16,265 @@
 
   <header>
     <div>
-      <h1>Australian Healthcare Workforce Analysis</h1>
-      <p>Examining Workforce Growth, Distribution, and Sector Trends (2015–2024)</p>
+      <h1>Who Looks After Australia?</h1>
+      <p>A decade of doctors, nurses and allied health workers, and who is still missing out (2015–2024)</p>
     </div>
   </header>
 
   <main>
-    <!-- Introduction Section -->
+
+    <!-- OPENING: hook + plain-language glossary -->
     <section class="card">
-      <h2>1. Introduction & The Big Picture</h2>
-      <p>
-        Australia faces ongoing challenges in maintaining a balanced healthcare workforce to keep pace with population growth, demographic shifts, and regional demands. Understanding these pressures requires looking beyond national totals to examine how individual health professions have evolved, scaled, and distributed themselves relative to one another over a decade. This visual story explores the structural composition, geographic concentration, and systemic maldistribution of Australia's healthcare professionals.
+      <h2>It's Sunday night and your child has a fever</h2>
+      <p class="lede">
+        In a big city, a GP, a pharmacist or an emergency department is a short drive away.
+        In a remote town, it might be hours. Behind every one of those visits is a health worker,
+        and Australia has <span class="fill">[total number from your data]</span> of them.
       </p>
+      <p>
+        This page follows that workforce in six steps: how fast it has grown, who is in it,
+        where they work, who is catching up, and where the gaps are still widest.
+      </p>
+
+      <dl class="glossary">
+        <div>
+          <dt>Practitioner</dt>
+          <dd>A health professional registered to practise, such as a doctor, nurse or physiotherapist.</dd>
+        </div>
+        <div>
+          <dt>Per 100,000 people</dt>
+          <dd>A fair way to compare places of different sizes: how many practitioners there are for every 100,000 residents.</dd>
+        </div>
+        <div>
+          <dt>Remoteness area</dt>
+          <dd>Official groups from "Major cities" to "Very remote", based on how far people live from services.</dd>
+        </div>
+      </dl>
     </section>
 
-    <!-- Visualization 1: Streamgraph -->
+    <!-- CHAPTER 1: growth (streamgraph) -->
     <section class="card">
-      <h2>2. Growth by Profession</h2>
+      <h2>1. How fast has the workforce grown?</h2>
       <p>
-        The streamgraph below illustrates the macro-level expansion and structural shifts across various Australian healthcare professions from 2015 to 2024. Symmetrical centering allows for clear observation of relative volume changes over time, revealing which disciplines have experienced rapid scaling versus those that have maintained stable growth curves.
+        Every profession has added people since 2015, but not at the same speed.
+        The streamgraph below shows each profession as a flowing band: the thicker the band, the more practitioners.
       </p>
 
-      <!-- The embedded chart container -->
       <div id="streamgraph" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation (Paragraph format) -->
-      <div class="munzner-box">
+      <p class="takeaway">
+        <span class="fill">[Profession]</span> grew fastest, while <span class="fill">[profession]</span> barely moved.
+      </p>
+      <p class="how-to-read">
+        How to read it: follow a coloured band from left to right. If it gets thicker, that profession is growing.
+        The bands are centred, so look at thickness, not height.
+      </p>
+      <details class="design-notes">
+        <summary>Design notes (What / Why / How)</summary>
         <p>
           This visualization analyzes multi-year quantitative records of annual practitioner counts categorized by healthcare professions to evaluate long-term sector growth and structural dominance shifts. Using a streamgraph idiom with stacked area marks and monotone interpolation, quantitative years are mapped to the horizontal axis, centered practitioner volumes are mapped vertically, and distinct nominal professions are distinguished through categorical color channels.
         </p>
-      </div>
+      </details>
     </section>
 
-    <!-- Visualization: Workforce Age Profile Stacked Bar Chart -->
+    <!-- CHAPTER 2: who are they? (NEW waffle + age/gender) -->
     <section class="card">
-      <h2>3. Workforce Age Profile by Gender</h2>
+      <h2>2. Who are these 100 workers?</h2>
       <p>
-        This stacked bar chart illustrates the age distribution of healthcare professionals, highlighting the heavy concentration in younger brackets (20–44) and the predominant female representation across all cohorts.
+        Totals hide the mix. Imagine shrinking the whole workforce down to just 100 people.
+        Most are nurses and midwives; doctors are a smaller group than many people expect.
       </p>
 
-      <!-- The embedded chart container -->
+      <div id="waffle" class="vis-container"></div>
+
+      <p class="takeaway">
+        For every doctor, there are about <span class="fill">[ratio]</span> nurses and midwives.
+      </p>
+      <p class="how-to-read">
+        How to read it: each square is one in every 100 practitioners. Squares of the same colour belong to the same profession.
+      </p>
+      <details class="design-notes">
+        <summary>Design notes (What / Why / How)</summary>
+        <p>
+          What: the share of registered practitioners in each profession group (nominal profession, quantitative share). Why: to give a quick part-to-whole sense of workforce composition. How: a waffle (unit) chart where each square mark is 1% and position in a 10×10 grid encodes order, with categorical colour hue distinguishing professions.
+        </p>
+      </details>
+
+      <p class="bridge">So who fills those squares? Mostly younger people, and mostly women.</p>
+
       <div id="age_stacked_bar" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation -->
-      <div class="munzner-box">
+      <p class="takeaway">
+        The workforce is concentrated in the 20–44 age brackets, and women are the majority in every age group.
+      </p>
+      <p class="how-to-read">
+        How to read it: each bar is an age group. The coloured segments show how many of its practitioners are women and how many are men.
+      </p>
+      <details class="design-notes">
+        <summary>Design notes (What / Why / How)</summary>
         <p>
           This visualization compares demographic proportions across age brackets and gender classifications to evaluate workforce aging and gender distribution. Utilizing a Stacked Bar Chart idiom, nominal age groups map horizontally while quantitative practitioner counts stack vertically, with gender sub-components distinguished via categorical color channels.
         </p>
-      </div>
+      </details>
     </section>
 
-    <!-- Visualization 2 & Bump Chart Combined: Regional Distribution & Growth Trajectories -->
+    <!-- CHAPTER 3: where (3 maps) -->
     <section class="card">
-      <h2>4. Regional Distribution & Growth Trajectories</h2>
+      <h2>3. Where do they work?</h2>
       <p>
-        Analyzing state-level workforce patterns involves examining both spatial concentration and temporal rank performance. While the proportional symbol map highlights the absolute magnitude and geographical imbalance of healthcare workers across Australian states and territories for 2024, the companion bump chart tracks annual growth rate trajectories and rank crossovers from 2018 to 2024. Together, these views reveal how static population centers contrast with dynamic regional growth shifts over time.
+        Now the question that matters most to patients: where? We look at it three ways, because each map answers a different question.
+        First, the raw numbers.
       </p>
 
-      <!-- Container for Proportional Symbol Map -->
-      <h3>Absolute Workforce Volume</h3>
+      <h3>Where are most practitioners? (total headcount, 2024)</h3>
       <div id="prop_map" class="vis-container"></div>
+      <p class="how-to-read">
+        How to read it: bigger circles mean more practitioners. Unsurprisingly, the most populous states have the biggest circles.
+      </p>
 
-      <!-- Container for State Rankings Bump Chart -->
-      <h3>State Workforce Growth Rate Rankings</h3>
+      <p class="bridge">But a big circle doesn't mean a well-served state. Population matters.</p>
+
+      <h3>Who has the most practitioners per person? (per 100,000 residents, 2021)</h3>
+      <div id="doctors_per_100k_map" class="vis-container"></div>
+      <p class="takeaway">
+        Once population is taken into account, <span class="fill">[state]</span> comes out ahead and <span class="fill">[state]</span> falls behind.
+      </p>
+      <p class="how-to-read">
+        How to read it: darker blue means more practitioners for every 100,000 people. This is the fairest way to compare states.
+      </p>
+
+      <p class="bridge">Small places are hard to see on a map of a huge continent, so here is every state on equal footing.</p>
+
+      <h3>Every state, same size on the page</h3>
+      <div id="tile_grid" class="vis-container"></div>
+      <p class="how-to-read">
+        How to read it: each hexagon is one state or territory, placed roughly where it sits on the map. Darker means a larger workforce.
+      </p>
+
+      <details class="design-notes">
+        <summary>Design notes (What / Why / How)</summary>
+        <p>
+          Proportional symbol map: spatial point locations use geographic latitude/longitude for position and circle area to encode workforce totals.
+        </p>
+        <p>
+          Choropleth: state polygon geometries are joined with derived quantitative practitioner rates per 100,000 residents (ABS 2021 Census populations), encoded through a sequential blue colour scale to highlight regional coverage disparities.
+        </p>
+        <p>
+          Multi-hex cartogram: abstract hex-grid coordinates map regions to equal-size marks, removing perceptual bias from land area, with a sequential blue colour channel for totals.
+        </p>
+      </details>
+    </section>
+
+    <!-- CHAPTER 4: who is catching up (bump) -->
+    <section class="card">
+      <h2>4. Who is catching up?</h2>
+      <p>
+        States are not standing still. Ranking them by workforce growth each year shows who is rising and who is slipping.
+      </p>
+
       <div id="bump_chart" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation (Paragraph format) -->
-      <div class="munzner-box">
+      <p class="takeaway">
+        <span class="fill">[State]</span> climbed from <span class="fill">[rank]</span> to <span class="fill">[rank]</span> between 2018 and 2024.
+      </p>
+      <p class="how-to-read">
+        How to read it: each line is a state. A line moving up means that state's workforce grew faster than others that year.
+      </p>
+      <details class="design-notes">
+        <summary>Design notes (What / Why / How)</summary>
         <p>
-          These spatial and temporal idioms combine geographic coordinate mapping with rank-based multi-series line visualization. The proportional symbol map overlays spatial point locations with quantitative workforce totals, using geographic latitude/longitude for position and circle area size to encode magnitude. The bump chart evaluates relative structural growth rankings across administrative regions over time, mapping ordinal years horizontally against inverted quantitative rank values using linear point-to-point line segments and direct text labels.
+          The bump chart evaluates relative structural growth rankings across administrative regions over time, mapping ordinal years horizontally against inverted quantitative rank values using linear point-to-point line segments and direct text labels.
         </p>
-      </div>
+      </details>
     </section>
 
-    <!-- Visualization 3: Doctors per 100k Choropleth Map -->
+    <!-- CHAPTER 5: states vs professions (NEW parallel coordinates) -->
     <section class="card">
-      <h2>5. Healthcare Practitioner Density per 100,000 Population (2021)</h2>
+      <h2>5. Is any state good at everything?</h2>
       <p>
-        Normalizing raw practitioner headcounts against ABS 2021 Census state populations reveals the true density of healthcare coverage across Australian states and territories. This normalization shifts our perspective from sheer headcounts to per-capita availability, exposing how smaller jurisdictions manage relative service ratios.
+        A state that leads on doctors might trail on nurses. Here, each line follows one state across four professions.
+        Lines that zig-zag show uneven coverage; lines that stay high are rare.
       </p>
 
-      <!-- The embedded map container -->
-      <div id="doctors_per_100k_map" class="vis-container"></div>
+      <div id="parallel" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation (Paragraph format) -->
-      <div class="munzner-box">
+      <p class="takeaway">
+        <span class="fill">[State]</span> leads on doctors but is near the bottom for <span class="fill">[profession]</span>.
+      </p>
+      <p class="how-to-read">
+        How to read it: each vertical line is one profession, with the lowest state at the bottom and the highest at the top (the numbers show the actual rates).
+        Click a state in the legend to follow it.
+      </p>
+      <details class="design-notes">
+        <summary>Design notes (What / Why / How)</summary>
         <p>
-          To evaluate healthcare supply relative to regional population size across Australian administrative boundaries, this choropleth map integrates state polygon geometries with derived quantitative practitioner rates per 100,000 residents. Visual encoding relies on a sequential blue color saturation scale mapped directly to normalized rate values to highlight regional coverage disparities.
+          What: practitioners per 100,000 residents for each state across four professions (quantitative, from workforce data joined with ABS population). Why: to compare states across several professions at once and reveal uneven coverage. How: parallel coordinates, with one vertical axis per profession, each axis scaled from its own lowest to highest state, and one line per state with categorical colour and legend-linked highlighting.
         </p>
-      </div>
+      </details>
     </section>
 
-    <!-- Visualization 4: Multi-Hex Cartogram -->
+    <!-- CHAPTER 6: the city vs country gap (heatmap) + conclusion -->
     <section class="card">
-      <h2>6. Equal-Weight Regional Distribution</h2>
+      <h2>6. How wide is the city–country gap?</h2>
       <p>
-        Geographic maps can distort data because larger states dominate physical space while smaller territories are difficult to compare. This multi-hex cartogram scales regional area proportionally to healthcare workforce volume, allowing an unbiased visual comparison across all jurisdictions without geographic size bias.
+        The deepest divide is not between states, but between city and country.
+        This grid compares 15 professions across five remoteness areas, from "Major cities" to "Very remote".
+        It shows where the workload per practitioner climbs, for example for paramedics and doctors in remote and very remote areas.
       </p>
 
-      <!-- The embedded cartogram container -->
-      <div id="tile_grid" class="vis-container"></div>
-
-      <!-- Munzner Framework Documentation (Paragraph format) -->
-      <div class="munzner-box">
-        <p>
-          This multi-hex cartogram compares practitioner counts across all administrative regions relative to workforce magnitude without perceptual size bias caused by geographic land area. Abstract multi-hex grid coordinates map regions to proportional cluster sizes combined with quantitative totals, utilizing proportional point marks and sequential blue color saturation.
-        </p>
-      </div>
-    </section>
-
-    <!-- Visualization 5: Profession x Remoteness Heatmap -->
-    <section class="card">
-      <h2>7. Healthcare Work Metrics by Profession & Remoteness Area (2023)</h2>
-      <p>
-        Drilling deeper into community access, this heatmap cross-examines key workforce metrics across 15 healthcare disciplines and 5 remoteness categories. It uncovers critical systemic insights—such as the sharp escalation of service metrics for paramedicine and medical practitioners in remote and very remote settings—reflecting the unique operational demands and rural healthcare delivery challenges across Australia.
-      </p>
-
-      <!-- Embedded chart container -->
       <div id="profession_heatmap" class="vis-container"></div>
 
-      <!-- Munzner Framework Documentation -->
-      <div class="munzner-box">
+      <p class="takeaway">
+        The further you live from a major city, the more <span class="fill">[metric]</span> each <span class="fill">[profession]</span> carries.
+      </p>
+      <p class="how-to-read">
+        How to read it: rows are remoteness areas, columns are professions. The darker the red, the higher the value.
+      </p>
+      <details class="design-notes">
+        <summary>Design notes (What / Why / How)</summary>
         <p>
           This visualization cross-examines quantitative workforce metrics across nominal healthcare professions and ordered remoteness classifications to identify practice pattern disparities between urban and rural settings. Utilizing a Heatmap idiom with rect marks and embedded text labels, nominal professions are arranged horizontally and ordered remoteness categories vertically, with quantitative values encoded through sequential red color saturation and contrast text.
         </p>
-      </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>So what does this mean for you?</h2>
+      <p class="lede">
+        Australia has more health workers than ever, but more does not mean evenly spread.
+        <span class="fill">[One sentence summarising your key finding.]</span>
+        Whether you live in a capital city or a remote town still shapes how quickly you can see a doctor, a nurse or a pharmacist.
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>Author: Edward Chen | 34844104 | Data Visualization 2 (DV2)</p>
-    <p>Data Source: National Health Workforce Dataset (AHPRA / Department of Health) Link: https://hwd.health.gov.au/webapi/jsf/tableView/tableView.xhtml</p>
+    <p>Author: Edward Chen | 34844104 | Data Visualization 2 (DV2) | October 2026</p>
+    <p class="sources">
+      Data sources:
+      (1) National Health Workforce Dataset, AHPRA / Department of Health:
+      https://hwd.health.gov.au/webapi/jsf/tableView/tableView.xhtml;
+      (2) Australian Bureau of Statistics, population and boundary data <span class="fill">[add exact ABS dataset names and URLs]</span>.
+    </p>
+    <p class="sources">AI acknowledgement: <span class="fill">[state which AI tools you used and for what, e.g. drafting text and code assistance]</span>.</p>
   </footer>
 
-  <!-- Script to embed the Vega-Lite JSON specifications -->
   <script>
-    // Embed Visualization 1 (Streamgraph)
-    vegaEmbed('#streamgraph', 'specs/workforce_growth_stream.json', {actions: false})
-      .catch(console.error);
-
-    // Embed Visualization: Workforce Age Profile Stacked Bar
-    vegaEmbed('#age_stacked_bar', 'specs/workforce_age_stacked_bar.json', {actions: false})
-      .catch(console.error);
-
-    // Embed Visualization 2a (Proportional Symbol Map)
-    vegaEmbed('#prop_map', 'specs/workforce_map_proportional.json', {actions: false})
-      .catch(console.error);
-
-    // Embed Visualization 2b (State Rankings Bump Chart)
-    vegaEmbed('#bump_chart', 'specs/state_rankings_bump.json', {actions: false})
-      .catch(console.error);
-
-    // Embed Visualization 3 (Doctors per 100k Choropleth Map)
-    vegaEmbed('#doctors_per_100k_map', 'specs/doctors_per_100k_map.json', {actions: false})
-      .catch(console.error);
-
-    // Embed Visualization 4 (Multi-Hex Cartogram)
-    vegaEmbed('#tile_grid', 'specs/workforce_tile_grid.json', {actions: false})
-      .catch(console.error);
-
-    // Embed Visualization 5 (Profession x Remoteness Heatmap)
-    vegaEmbed('#profession_heatmap', 'specs/profession_remoteness_heatmap.json', {actions: false})
-      .catch(console.error);
+    const opts = { actions: false };
+    const charts = {
+      '#streamgraph': 'specs/workforce_growth_stream.json',
+      '#waffle': 'specs/workforce_waffle.json',
+      '#age_stacked_bar': 'specs/workforce_age_stacked_bar.json',
+      '#prop_map': 'specs/workforce_map_proportional.json',
+      '#doctors_per_100k_map': 'specs/doctors_per_100k_map.json',
+      '#tile_grid': 'specs/workforce_tile_grid.json',
+      '#bump_chart': 'specs/state_rankings_bump.json',
+      '#parallel': 'specs/state_parallel_coords.json',
+      '#profession_heatmap': 'specs/profession_remoteness_heatmap.json'
+    };
+    Object.entries(charts).forEach(([selector, spec]) =>
+      vegaEmbed(selector, spec, opts).catch(console.error)
+    );
   </script>
 
 </body>
