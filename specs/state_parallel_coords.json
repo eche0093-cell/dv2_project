@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Parallel coordinates: each state's practitioners per 100,000 people across four professions (SAMPLE DATA - replace with real rates).",
+  "width": 560,
+  "height": 340,
+  "title": {
+    "text": "No state is best at everything",
+    "subtitle": "Each line is a state. Higher on an axis = more practitioners per 100,000 people. Click a state in the legend to highlight it.",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/eche0093-cell/dv2_project/main/data/State_profession_rates_sample.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Doctors": "number",
+        "Nurses and midwives": "number",
+        "Allied health": "number",
+        "Pharmacists": "number"
+      }
+    }
+  },
+  "transform": [
+    { "fold": ["Doctors", "Nurses and midwives", "Allied health", "Pharmacists"], "as": ["profession", "value"] },
+    { "joinaggregate": [
+        { "op": "min", "field": "value", "as": "minv" },
+        { "op": "max", "field": "value", "as": "maxv" }
+      ], "groupby": ["profession"] },
+    { "calculate": "(datum.value - datum.minv) / (datum.maxv - datum.minv)", "as": "norm" }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "rule", "color": "#999", "strokeWidth": 1.5 },
+      "encoding": {
+        "x": {
+          "field": "profession",
+          "type": "ordinal",
+          "sort": ["Doctors", "Nurses and midwives", "Allied health", "Pharmacists"],
+          "axis": { "title": null, "labelAngle": 0, "labelFontSize": 12, "orient": "top", "domain": false, "ticks": false }
+        }
+      }
+    },
+    {
+      "params": [
+        { "name": "highlight", "select": { "type": "point", "fields": ["state"] }, "bind": "legend" }
+      ],
+      "mark": { "type": "line", "point": { "filled": true, "size": 50 }, "strokeWidth": 2.5 },
+      "encoding": {
+        "x": { "field": "profession", "type": "ordinal", "sort": ["Doctors", "Nurses and midwives", "Allied health", "Pharmacists"] },
+        "y": { "field": "norm", "type": "quantitative", "axis": null, "scale": { "domain": [-0.08, 1.08] } },
+        "detail": { "field": "state", "type": "nominal" },
+        "color": { "field": "state", "type": "nominal", "title": "State / territory", "scale": { "scheme": "tableau10" } },
+        "opacity": { "condition": { "param": "highlight", "value": 1 }, "value": 0.2 },
+        "tooltip": [
+          { "field": "state", "title": "State" },
+          { "field": "profession", "title": "Profession" },
+          { "field": "value", "title": "Per 100,000 people" }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.value == datum.maxv" }],
+      "mark": { "type": "text", "dy": -10, "fontSize": 11, "color": "#444" },
+      "encoding": {
+        "x": { "field": "profession", "type": "ordinal", "sort": ["Doctors", "Nurses and midwives", "Allied health", "Pharmacists"] },
+        "y": { "datum": 1, "type": "quantitative" },
+        "text": { "field": "value", "type": "quantitative" }
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.value == datum.minv" }],
+      "mark": { "type": "text", "dy": 12, "fontSize": 11, "color": "#444" },
+      "encoding": {
+        "x": { "field": "profession", "type": "ordinal", "sort": ["Doctors", "Nurses and midwives", "Allied health", "Pharmacists"] },
+        "y": { "datum": 0, "type": "quantitative" },
+        "text": { "field": "value", "type": "quantitative" }
+      }
+    }
+  ],
+  "config": { "view": { "stroke": null } }
+}
